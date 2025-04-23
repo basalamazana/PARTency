@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TransPartency GmbH</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #333; }
+        header {
+            background: #0077cc; color: white; padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap;
+        }
+        header h1 { margin: 0; font-size: 1.5em; }
+        nav a {
+            color: white; margin-left: 20px; text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover { text-decoration: underline; }
+        .hero {
+            padding: 60px 20px; background: #eef5fc;
+            text-align: center;
+        }
+        .hero h2 { margin-bottom: 10px; }
+        .section { padding: 40px 20px; max-width: 800px; margin: auto; }
+        .bar-container {
+            margin: 10px 0 25px; background: #e0e0e0; border-radius: 5px;
+            overflow: hidden; height: 25px; width: 100%;
+        }
+        .bar-fill {
+            height: 100%; text-align: right; line-height: 25px;
+            padding-right: 10px; color: white; font-weight: bold;
+        }
+        .status-label { margin-bottom: 5px; font-weight: bold; }
+        .appointment-link {
+            display: inline-block; margin-top: 5px;
+            font-size: 14px; text-decoration: none; color: #0077cc; font-weight: bold;
+        }
+        .appointment-link:hover { text-decoration: underline; }
+        input, button, textarea {
+            padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box;
+        }
+        button {
+            background: #0077cc; color: white; border: none; cursor: pointer;
+        }
+        button:hover { background: #005999; }
+        footer {
+            background: #222; color: white; padding: 30px 20px;
+            text-align: center; font-size: 14px;
+        }
+        form { max-width: 500px; margin: auto; }
+        .nav-links { display: flex; flex-wrap: wrap; align-items: center; }
+        .nav-links a { margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>TransPartency GmbH</h1>
+    <nav class="nav-links">
+        <a href="#wartung">Wartungsrechner</a>
+        <a href="#about">Über uns</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#rechtliches">Impressum</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Wartung einfach gemacht.</h2>
+    <p>TransPartency bietet digitale Fahrzeugwartung auf Knopfdruck – transparent, schnell und kostenlos.</p>
+</section>
+
+<section class="section" id="wartung">
+    <h2>Wartungsstatus berechnen</h2>
+    <label for="kmInput"><strong>Aktueller Kilometerstand:</strong></label>
+    <input type="number" id="kmInput" value="95000" min="0" step="1000" />
+    <button onclick="updateBars()">Berechnen</button>
+    <div id="bars"></div>
+</section>
+
+<section class="section" id="about">
+    <h2>Über uns</h2>
+    <p>Die TransPartency GmbH ist ein junges Unternehmen mit Fokus auf innovative Lösungen im Bereich Fahrzeugwartung und digitale Fahrzeugdiagnose. Unser Ziel: Transparenz schaffen, bevor Probleme entstehen.</p>
+</section>
+
+<section class="section" id="kontakt">
+    <h2>Kontakt</h2>
+    <form onsubmit="event.preventDefault(); alert('Danke für deine Nachricht!'); this.reset();">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required />
+
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" required />
+
+        <label for="nachricht">Nachricht:</label>
+        <textarea id="nachricht" rows="5" required></textarea>
+
+        <button type="submit">Absenden</button>
+    </form>
+</section>
+
+<section class="section" id="rechtliches">
+    <h2>Impressum & Datenschutz</h2>
+    <p><strong>TransPartency GmbH</strong><br>
+    Musterstraße 123<br>
+    12345 Musterstadt<br>
+    E-Mail: kontakt@transpartency.de</p>
+
+    <p><strong>Datenschutzhinweis:</strong> Diese Webseite verarbeitet keine personenbezogenen Daten ohne Einwilligung. Kontaktanfragen werden vertraulich behandelt und nicht weitergegeben.</p>
+</section>
+
+<footer>
+    &copy; 2025 TransPartency GmbH – Alle Rechte vorbehalten.
+</footer>
+
+<script>
+    const parts = [
+        { name: 'Ölwechsel', dueKm: 100000 },
+        { name: 'Bremsflüssigkeit', dueKm: 120000 },
+        { name: 'Zündkerzen', dueKm: 100000 },
+        { name: 'Kupplung', dueKm: 120000 },
+        { name: 'Stoßdämpfer', dueKm: 130000 }
+    ];
+
+    function updateBars() {
+        const currentKm = parseInt(document.getElementById('kmInput').value, 10);
+        const container = document.getElementById('bars');
+        container.innerHTML = '';
+
+        parts.forEach(part => {
+            const progress = Math.min((currentKm / part.dueKm) * 100, 100);
+            let color;
+            if (progress < 70) color = '#4CAF50';
+            else if (progress < 100) color = '#FFC107';
+            else color = '#F44336';
+
+            const partDiv = document.createElement('div');
+            partDiv.innerHTML = `
+                <div class="status-label">${part.name} – ${Math.round(progress)}% erreicht (fällig bei ${part.dueKm} km)</div>
+                <div class="bar-container">
+                    <div class="bar-fill" style="width:${progress}%; background:${color};">${Math.round(progress)}%</div>
+                </div>
+                ${progress >= 70 ? `<a class="appointment-link" href="https://werkstatt.de/termin" target="_blank">Werkstatt-Termin vereinbaren</a>` : ''}
+            `;
+            container.appendChild(partDiv);
+        });
+    }
+
+    // Startwerte berechnen
+    updateBars();
+</script>
+
+</body>
+</html>

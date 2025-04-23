@@ -3,23 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <title>Leistungen – TransPartency GmbH</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..."
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 2em;
       background-color: #f9f9f9;
     }
+
+    .logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
     h1 {
       color: #333;
     }
+
     nav a {
       margin-right: 15px;
       text-decoration: none;
       color: #007acc;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
+
     .leistungen-box {
       background-color: #ffffff;
       padding: 20px;
@@ -27,29 +44,55 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
       max-width: 800px;
     }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    li i {
+      margin-right: 10px;
+      color: #007acc;
+    }
+
+    .banner {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Logo -->
+  <img src="https://via.placeholder.com/200x60?text=TransPartency" alt="Logo" class="logo" />
+
   <h1>Unsere Leistungen</h1>
+
+  <!-- Bannerbild -->
+  <img src="https://images.unsplash.com/photo-1616844112212-b2b3e9b69cc5?auto=format&fit=crop&w=1200&q=80" 
+       alt="Werkstatt Übersicht" class="banner" />
 
   <div class="leistungen-box">
     <p>
       TransPartency GmbH bietet digitale Lösungen zur Überwachung und Planung von Fahrzeugwartung. 
       Unser System ermöglicht es Nutzer:innen, durch die Eingabe des Kilometerstands eine präzise 
       Einschätzung zu erhalten, welche Wartungen gemäß Herstellervorgaben bald anstehen. 
-      Zusätzlich werden auf Erfahrungswerten basierende Hinweise zu typischen Verschleißteilen gegeben, 
-      die in naher Zukunft überprüft oder ersetzt werden sollten.
+      Zusätzlich werden auf Erfahrungswerten basierende Hinweise zu typischen Verschleißteilen gegeben.
     </p>
 
-    <p>
-      Unsere Leistungen umfassen:
-    </p>
+    <p>Unsere Leistungen:</p>
     <ul>
-      <li>Berechnung individueller Wartungsintervalle nach Kilometerstand</li>
-      <li>Visualisierung anstehender Maßnahmen in Balkendiagrammen</li>
-      <li>Vorhersage typischer Reparaturen auf Basis von Erfahrungswerten</li>
-      <li>Einfache Benutzeroberfläche für Endkund:innen und Werkstätten</li>
-      <li>Modulare Einbindung in bestehende Fahrzeugverwaltungs-Systeme</li>
+      <li><i class="fas fa-tools"></i> Berechnung individueller Wartungsintervalle nach Kilometerstand</li>
+      <li><i class="fas fa-chart-bar"></i> Visualisierung anstehender Maßnahmen in Balkendiagrammen</li>
+      <li><i class="fas fa-car-crash"></i> Vorhersage typischer Reparaturen auf Basis von Erfahrungswerten</li>
+      <li><i class="fas fa-laptop-code"></i> Einfache Benutzeroberfläche für Endkund:innen und Werkstätten</li>
+      <li><i class="fas fa-cubes"></i> Modulare Einbindung in bestehende Systeme</li>
     </ul>
   </div>
 
@@ -58,5 +101,6 @@
     <a href="fahrzeugdaten.html">Fahrzeugdaten</a>
     <a href="kontakt.html">Kontakt</a>
   </nav>
+
 </body>
 </html>
